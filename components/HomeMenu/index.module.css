@@ -1,0 +1,29 @@
+.home_menu {
+   position: absolute;
+   top: 0px;
+   left: 0px; 
+   width: 100%;
+   height: 100%;
+   background: white;
+   z-index: 100;
+}
+
+
+.home_menu__burger_btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  /* background: red; */
+  padding: 5px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.home_menu__burger_btn:hover {
+  background: var(--color-gray);
+}

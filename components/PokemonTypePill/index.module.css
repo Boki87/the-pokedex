@@ -1,0 +1,32 @@
+.type_pill {
+  min-width: 60px;
+  height: 25px;
+  font-size: 0.9rem;
+  position: relative;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: 0px 5px;
+  cursor: pointer;
+}
+
+.type_pill__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.type_pill__icon > img {
+  width: 15px;
+  height: 15px;
+}
+
+.type_pill__name {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  color: #fff;
+}

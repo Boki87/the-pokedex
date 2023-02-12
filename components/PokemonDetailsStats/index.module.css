@@ -1,0 +1,18 @@
+.pokemon_stats {
+}
+
+.pokemon_stats_row {
+  display: flex;
+  height: 30px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.pokemon_stats_row__title {
+  min-width: 150px;
+  margin-right: 10px;
+  text-transform: capitalize;
+  color: var(--text-black-light);
+  display: flex;
+  justify-content: space-between;
+}
