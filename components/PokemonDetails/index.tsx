@@ -6,6 +6,7 @@ import PokemonDetailsAbout from "../PokemonDetailsAbout";
 import PokemonDetailsStats from "../PokemonDetailsStats";
 import PokemonEvolutions from "../PokemonEvolutions";
 import PokemonMoves from "../PokemonMoves";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function PokemonDetails({ pokemon }: { pokemon: Pokemon }) {
   const [activeTab, setActiveTab] = useState("about");
@@ -24,15 +25,25 @@ export default function PokemonDetails({ pokemon }: { pokemon: Pokemon }) {
   }
 
   return (
-    <div className={style.pokemon_details}>
-      <div className={style.pokemon_details__image_container}>
+    <motion.div
+      initial={{ y: 200 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={style.pokemon_details}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: -300 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={style.pokemon_details__image_container}
+      >
         <Image
           src={pokemon?.image}
           width={250}
           height={250}
           alt="pokemon image"
         />
-      </div>
+      </motion.div>
 
       <div className={style.pokemon_details__tab_navs}>
         <div
@@ -61,7 +72,16 @@ export default function PokemonDetails({ pokemon }: { pokemon: Pokemon }) {
         </div>
       </div>
 
-      <div>{tabContent[activeTab]}</div>
-    </div>
+      <AnimatePresence initial={false} mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ opacity: 0, x: -100 }}
+        >
+          {tabContent[activeTab]}
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
   );
 }
