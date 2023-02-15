@@ -69,7 +69,8 @@ async function fetchPokemon(
   offset: number = 0
 ): Promise<Pokemon[]> {
   const pokemonList = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
+    { cache: "force-cache" }
   );
   let pokemonListRes = await pokemonList.json();
 

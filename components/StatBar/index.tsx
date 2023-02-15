@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { useMemo } from "react";
+
 interface IStatBar {
   value: number;
   max: number;
@@ -28,14 +30,16 @@ export default function StatBar({ value, max, ...rest }: IStatBar) {
       }}
       {...rest}
     >
-      <div
+      <motion.div
+        initial={{ width: "0%" }}
+        animate={{ width: `${progress}%` }}
+        transition={{ duration: 1 }}
         style={{
-          width: `${progress}%`,
           background: `${color}`,
           height: "100%",
           borderRadius: "2px",
         }}
-      ></div>
+      ></motion.div>
     </div>
   );
 }

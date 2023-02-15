@@ -34,5 +34,6 @@ export function usePokemon(initialPokemon: Pokemon[]) {
     setPokemon,
     fetchNextPokemon,
     isLoading,
+    limit,
   };
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, use } from "react";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import HomeHeader from "../components/HomeHeader";
 import style from "../styles/index.module.css";
 import { fetchPokemon } from "../utils/apiCalls";
@@ -9,7 +10,7 @@ import { usePokemon } from "../utils/usePokemon";
 import AnimatedSection from "../components/AnimatedSection";
 import Image from "next/image";
 import HomeMenu from "../components/HomeMenu";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home({
   pokemon: serverPokemon,
@@ -18,9 +19,11 @@ export default function Home({
   pokemon: Pokemon[];
   error: boolean;
 }) {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { isLoading, pokemon, fetchNextPokemon } = usePokemon(serverPokemon);
+  const { isLoading, pokemon, fetchNextPokemon, limit } =
+    usePokemon(serverPokemon);
 
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
   const container = useRef<HTMLDivElement>(null);

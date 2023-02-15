@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SearchInput from "../SearchInput";
-import { RiMenu3Fill } from "react-icons/ri";
+import { GiStarsStack } from "react-icons/gi";
 import style from "./index.module.css";
 import { fetchSinglePokemon } from "../../utils/apiCalls";
 import { useRouter } from "next/router";
@@ -37,7 +37,7 @@ export default function HomeHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
       </div>
       <div className={style.home_header__content}>
         <button onClick={onOpenMenu} className={style.home_header__burger_btn}>
-          <RiMenu3Fill />
+          <GiStarsStack style={{ color: "#444" }} />
         </button>
         <div className={style.home_header__title}>
           <h1 className="text-xl">Pokedex</h1>

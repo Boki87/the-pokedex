@@ -3,6 +3,9 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import PokemonTypePill from "../PokemonTypePill";
 import { Pokemon } from "../../types/Pokemon";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { useFavorites } from "../../utils/useFavorites";
 
 interface IPokemonPageHeader {
   pokemon: Pokemon;
@@ -11,16 +14,44 @@ interface IPokemonPageHeader {
 export default function PokemonPageHeader({ pokemon }: IPokemonPageHeader) {
   const router = useRouter();
 
+  const { favoritePokemon, addPokemon, removePokemon } = useFavorites();
+
+  function addToFavoritesHandler() {
+    const isInFavs = favoritePokemon.map((p) => p.id).includes(pokemon.id);
+
+    if (isInFavs) {
+      removePokemon(pokemon.id);
+    } else {
+      addPokemon(pokemon);
+    }
+  }
+
   return (
     <div className={style.pokemon_page_header}>
       <div className={style.pokemon_page_header__bg_layer}></div>
-      <div className={style.pokemon_page_header__content_layer}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+        className={style.pokemon_page_header__content_layer}
+      >
         <div className={style.pokemon_page_header__nav}>
           <button
             onClick={() => router.push("/")}
-            className={style.pokemon_page_header__back}
+            className={style.pokemon_page_header__button}
           >
             <FaLongArrowAltLeft />
+          </button>
+
+          <button
+            onClick={addToFavoritesHandler}
+            className={style.pokemon_page_header__button}
+          >
+            {!favoritePokemon.map((p) => p.id).includes(pokemon.id) ? (
+              <AiOutlineStar />
+            ) : (
+              <AiTwotoneStar />
+            )}
           </button>
         </div>
         <div className={style.pokemon_page_header__pokemon}>
@@ -45,7 +76,7 @@ export default function PokemonPageHeader({ pokemon }: IPokemonPageHeader) {
             <PokemonTypePill name={type.name} showIcon key={type.name} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

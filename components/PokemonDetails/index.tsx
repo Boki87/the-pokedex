@@ -31,19 +31,14 @@ export default function PokemonDetails({ pokemon }: { pokemon: Pokemon }) {
       transition={{ duration: 0.5 }}
       className={style.pokemon_details}
     >
-      <motion.div
-        initial={{ opacity: 0, y: -300 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={style.pokemon_details__image_container}
-      >
+      <div className={style.pokemon_details__image_container}>
         <Image
           src={pokemon?.image}
           width={250}
           height={250}
           alt="pokemon image"
         />
-      </motion.div>
+      </div>
 
       <div className={style.pokemon_details__tab_navs}>
         <div
