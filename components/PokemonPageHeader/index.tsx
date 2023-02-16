@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import { useFavorites } from "../../utils/useFavorites";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 interface IPokemonPageHeader {
   pokemon: Pokemon;
@@ -24,6 +25,16 @@ export default function PokemonPageHeader({ pokemon }: IPokemonPageHeader) {
     } else {
       addPokemon(pokemon);
     }
+  }
+
+  function goPrev() {
+    if (pokemon.id > 1) {
+      router.push(`/${pokemon.id - 1}`);
+    }
+  }
+
+  function goNext() {
+    router.push(`/${pokemon.id + 1}`);
   }
 
   return (
@@ -75,6 +86,38 @@ export default function PokemonPageHeader({ pokemon }: IPokemonPageHeader) {
           {pokemon?.types.map((type) => (
             <PokemonTypePill name={type.name} showIcon key={type.name} />
           ))}
+        </div>
+        <div
+          onClick={goPrev}
+          style={{
+            width: "40px",
+            height: "60px",
+            position: "absolute",
+            top: "50%",
+            left: "0px",
+            zIndex: 1000,
+            cursor: "pointer",
+            color: "white",
+            fontSize: "2.5rem",
+          }}
+        >
+          <BsChevronCompactLeft />
+        </div>
+        <div
+          onClick={goNext}
+          style={{
+            width: "40px",
+            height: "60px",
+            position: "absolute",
+            top: "50%",
+            right: "0px",
+            zIndex: 1000,
+            cursor: "pointer",
+            color: "white",
+            fontSize: "2.5rem",
+          }}
+        >
+          <BsChevronCompactRight />
         </div>
       </motion.div>
     </div>
