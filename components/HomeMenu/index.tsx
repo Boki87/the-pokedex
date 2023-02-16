@@ -28,7 +28,7 @@ export default function HomeMenu({ onClose }: { onClose: () => void }) {
           color: "#333",
         }}
       >
-        Favorite Pokemon
+        Favourite Pokemon
       </div>
       <div
         style={{
